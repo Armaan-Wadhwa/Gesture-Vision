@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gesture Vision</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="loading">
+        <h1>Gesture Vision</h1>
+        <p id="load-status">Requesting camera access...</p>
+        <p id="load-error" class="error" hidden></p>
+    </div>
+
+    <div id="app" hidden>
+        <div class="canvas-wrap">
+            <canvas id="canvas"></canvas>
+            <video id="video" autoplay playsinline></video>
+            <div id="gesture-toast" hidden></div>
+        </div>
+
+        <div id="toolbar">
+            <div class="tool-group">
+                <label for="sel-filter">Filter</label>
+                <select id="sel-filter"></select>
+            </div>
+            <div class="tool-group">
+                <label>Mode</label>
+                <div id="mode-btns"></div>
+            </div>
+            <div class="tool-group">
+                <label for="intensity">Intensity <span id="intensity-val">100%</span></label>
+                <input type="range" id="intensity" min="0" max="100" value="100">
+            </div>
+            <div class="tool-group">
+                <label for="hue-shift">Hue Shift <span id="hue-val">30</span></label>
+                <input type="range" id="hue-shift" min="0" max="179" value="30">
+            </div>
+            <div class="tool-group row">
+                <button id="btn-snapshot" title="Save snapshot">Snapshot</button>
+                <button id="btn-freeze" title="Freeze frame">Freeze</button>
+                <button id="btn-clear" title="Clear drawing">Clear Draw</button>
+            </div>
+            <div id="fps-display">FPS: --</div>
+        </div>
+
+        <details id="help">
+            <summary>Gesture Guide</summary>
+            <ul>
+                <li><b>Pinch</b> right hand = next filter, left hand = previous</li>
+                <li><b>Open palm</b> (5 fingers) = reset filter</li>
+                <li><b>Fist</b> (0 fingers) = freeze / unfreeze</li>
+                <li><b>Thumbs up</b> = save snapshot</li>
+                <li><b>Thumbs down</b> = discard last snapshot</li>
+                <li><b>Swipe</b> left/right = switch filter</li>
+                <li><b>Two hands</b> = filter inside box; thumb distance = intensity</li>
+            </ul>
+        </details>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/vision_bundle.js"
+            crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+</body>
+</html>
