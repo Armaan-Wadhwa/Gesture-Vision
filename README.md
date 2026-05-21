@@ -23,7 +23,6 @@
 
 > **Live demo:** [https://Armaan-Wadhwa.github.io/Gesture-Vision/](https://Armaan-Wadhwa.github.io/Gesture-Vision/)
 >
-> Replace `Armaan-Wadhwa` with your GitHub username after deploying.
 
 <!-- Add a screenshot or GIF here -->
 <!-- ![Demo](assets/demo.gif) -->
