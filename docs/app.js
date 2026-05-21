@@ -1,5 +1,12 @@
 /* Gesture Vision — browser edition */
 
+import {
+  FilesetResolver,
+  HandLandmarker,
+  FaceLandmarker,
+  ImageSegmenter,
+} from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.35/vision_bundle.mjs";
+
 const FILTERS = [
   "None","GRAY","THERMAL","INVERT","SKETCH","VINTAGE",
   "CARTOON","PIXELATE","BLUR","EDGE","SEPIA","HSV_SHIFT",
@@ -119,7 +126,7 @@ class GestureVision {
 
     try {
       this.visionFiles = await FilesetResolver.forVisionTasks(
-        "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm"
+        "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.35/wasm"
       );
       this.handLandmarker = await HandLandmarker.createFromOptions(this.visionFiles, {
         baseOptions: {
