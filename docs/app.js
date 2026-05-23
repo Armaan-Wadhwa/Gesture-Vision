@@ -110,6 +110,9 @@ class GestureVision {
         video: { width: { ideal: 640 }, height: { ideal: 480 }, facingMode: "user" }
       });
       this.video.srcObject = stream;
+      await new Promise(resolve => {
+        this.video.onloadedmetadata = resolve;
+      });
       await this.video.play();
     } catch (e) {
       document.getElementById("load-error").textContent =
@@ -118,6 +121,10 @@ class GestureVision {
       return;
     }
 
+    // Ensure at least one decoded frame so dimensions are valid
+    while (!this.video.videoWidth) {
+      await new Promise(r => requestAnimationFrame(r));
+    }
     const w = this.video.videoWidth, h = this.video.videoHeight;
     this.canvas.width = this._tmpC.width = this._blrC.width = w;
     this.canvas.height = this._tmpC.height = this._blrC.height = h;
